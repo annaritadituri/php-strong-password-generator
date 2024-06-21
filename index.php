@@ -3,9 +3,11 @@
     $characters = 'abcdefghijklmnopqrstuvwxyz';
     $special_characters = '-&%!()=?_';
     $strong_password = '';
+    $default_length = 8;
 
     if(!empty($_GET['password-length'])) {
         $length = $_GET['password-length'];
+        if(intval($length) === 0) $length = $default_length;
     };
 
     if(isset($length)) {
