@@ -36,7 +36,7 @@
 
     function getRandChar($characters) {
 
-        $randInt = rand(0, strlen($characters));
+        $randInt = rand(0, strlen($characters) - 1);
         $randBool = rand(0, 1);
         if($randBool === 0) {
             $randomChar = substr($characters, $randInt, 1);
@@ -49,7 +49,7 @@
 
     function getRandSpecial($special_characters) {
 
-        $randInt = rand(0, strlen($special_characters));
+        $randInt = rand(0, strlen($special_characters) - 1);
         $randomSpecial = substr($special_characters, $randInt, 1);
         return $randomSpecial;
 
