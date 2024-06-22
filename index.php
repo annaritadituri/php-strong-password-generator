@@ -2,6 +2,8 @@
 
     require_once __DIR__ . '/functions.php';
 
+    session_start();
+
     $characters = range('a', 'z');
     $special_characters = '-&%!()=?_';
     $default_length = 8;
@@ -13,6 +15,9 @@
 
     if(isset($length)) {
         $strong_password = generatePassword($length, $characters, $special_characters);
+        $_SESSION['strong_password'] = $strong_password;
+        header('Location: ./password.php');
+        die();
     };
 
 ?>
@@ -31,14 +36,6 @@
         <label for="input-number">Quanto deve essere lunga la tua password?</label>
         <input type="number" name="password-length" id="input-number">
     </form>
-
-    <?php
-
-        if(isset($length)) : ?>
-            <p>La password generata è: <?php echo $strong_password ?></p>
-        <?php endif;
-
-    ?>
     
 </body>
 </html>
