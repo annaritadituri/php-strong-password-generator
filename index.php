@@ -2,7 +2,6 @@
 
     $characters = range('a', 'z');
     $special_characters = '-&%!()=?_';
-    $strong_password = '';
     $default_length = 8;
 
     if(!empty($_GET['password-length'])) {
@@ -11,20 +10,7 @@
     };
 
     if(isset($length)) {
-
-        for($i = 0; $i < $length; $i++) {
-
-            $randInt = rand(0, 2);
-            if($randInt === 0) {
-                $strong_password .= getRandNum();
-            } else if ($randInt === 1) {
-                $strong_password .= getRandChar($characters);
-            } else {
-                $strong_password .= getRandSpecial($special_characters);
-            };
-            
-        };
-
+        $strong_password = generatePassword($length, $characters, $special_characters);
     };
 
     function getRandNum() {
@@ -53,7 +39,26 @@
         $randomSpecial = substr($special_characters, $randInt, 1);
         return $randomSpecial;
 
-    }
+    };
+
+    function generatePassword($length, $characters, $special_characters) {
+
+        $strong_password = '';
+        for($i = 0; $i < $length; $i++) {
+
+            $randInt = rand(0, 2);
+            if($randInt === 0) {
+                $strong_password .= getRandNum();
+            } else if ($randInt === 1) {
+                $strong_password .= getRandChar($characters);
+            } else {
+                $strong_password .= getRandSpecial($special_characters);
+            };
+            
+        };
+        return $strong_password;
+
+    };
 
 ?>
 
