@@ -1,6 +1,6 @@
 <?php
 
-    $characters = 'abcdefghijklmnopqrstuvwxyz';
+    $characters = range('a', 'z');
     $special_characters = '-&%!()=?_';
     $strong_password = '';
     $default_length = 8;
@@ -20,7 +20,7 @@
             } else if ($randInt === 1) {
                 $strong_password .= getRandChar($characters);
             } else {
-                $strong_password .= getRandChar($special_characters);
+                $strong_password .= getRandSpecial($special_characters);
             };
             
         };
@@ -36,12 +36,12 @@
 
     function getRandChar($characters) {
 
-        $randInt = rand(0, strlen($characters) - 1);
+        $randInt = rand(0, count($characters) - 1);
         $randBool = rand(0, 1);
         if($randBool === 0) {
-            $randomChar = substr($characters, $randInt, 1);
+            $randomChar = $characters[$randInt];
         } else {
-            $randomChar = strtoupper(substr($characters, $randInt, 1));
+            $randomChar = strtoupper($characters[$randInt]);
         }
         return $randomChar;
 
